@@ -6,10 +6,14 @@ public class CannonBallBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject hitEffectPrefab;
 
+    private void Start()
+    {
+        Destroy(gameObject, 3f); 
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject hitEffect = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
-        Destroy(hitEffect, 3f);
+        Destroy(hitEffect, 1.5f);
         Destroy(gameObject);
     }
 }

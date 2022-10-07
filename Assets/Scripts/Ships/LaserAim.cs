@@ -5,8 +5,9 @@ using UnityEngine;
 public class LaserAim : MonoBehaviour
 {
     [SerializeField] private Transform aimStartPoint;
+    [SerializeField] private float laserDistance = 5f;
     private LineRenderer lineRenderer;
-    private bool shouldAim = true;
+    private bool shouldAim;
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -18,8 +19,9 @@ public class LaserAim : MonoBehaviour
     {
         if (shouldAim)
         {
+            
             lineRenderer.SetPosition(0, aimStartPoint.position);
-            RaycastHit2D hit = Physics2D.Raycast(aimStartPoint.position, aimStartPoint.up);
+            RaycastHit2D hit = Physics2D.Raycast(aimStartPoint.position, aimStartPoint.right, laserDistance, ~PlayerShipController.PlayerLayer);
             if (hit.collider)
             {
                 lineRenderer.SetPosition(1, hit.point);
@@ -34,10 +36,13 @@ public class LaserAim : MonoBehaviour
             }
             else
             {
-                lineRenderer.SetPosition(1, aimStartPoint.up * 5);
+                lineRenderer.SetPosition(1, aimStartPoint.position + aimStartPoint.right * laserDistance);
                 SetLaserColor(Color.yellow);
             }
-            
+        }
+        else
+        {
+            SetLaserColor(new Color(0,0,0,0));
         }
     }
 
@@ -50,5 +55,6 @@ public class LaserAim : MonoBehaviour
     {
         lineRenderer.startColor = color;
         lineRenderer.endColor = color;
+        
     }
 }

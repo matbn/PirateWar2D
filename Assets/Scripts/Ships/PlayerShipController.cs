@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerShipController : ShipController
 {
+    public static readonly int PlayerLayer = 6;
+
     [SerializeField] private float attackCooldown;
     [SerializeField] private float specialAttackCooldown;
     [SerializeField] private float cannonBallForce;
@@ -35,6 +37,7 @@ public class PlayerShipController : ShipController
         if(currentAttackCooldown <= 0)
         {
             GameObject cannonBall = Instantiate(cannonBallPrefab, cannonBallPoints[0].position, cannonBallPoints[0].rotation);
+            cannonBall.layer = PlayerLayer;
             Rigidbody2D cannonBallRB = cannonBall.GetComponent<Rigidbody2D>();
             cannonBallRB.AddForce(cannonBallPoints[0].right * cannonBallForce, ForceMode2D.Impulse);
             currentAttackCooldown = attackCooldown ;
@@ -47,6 +50,7 @@ public class PlayerShipController : ShipController
             foreach (Transform cannonBallPoint in cannonBallPoints)
             {
                 GameObject cannonBall = Instantiate(cannonBallPrefab, cannonBallPoint.position, cannonBallPoint.rotation);
+                cannonBall.layer = 6;
                 Rigidbody2D cannonBallRB = cannonBall.GetComponent<Rigidbody2D>();
                 cannonBallRB.AddForce(cannonBallPoint.right * cannonBallForce, ForceMode2D.Impulse);
             }

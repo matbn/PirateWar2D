@@ -7,7 +7,7 @@ public abstract class ShipController : MonoBehaviour
     protected Rigidbody2D shipRigidBody;
     protected SpriteRenderer shipSpriteRenderer;
     protected float rotateDirection;
-    protected bool shouldMove;
+    protected bool shouldMove = false;
     [SerializeField] protected float speed;
     [SerializeField] protected float rotationSpeed;
     [SerializeField] protected float damage;
@@ -24,11 +24,11 @@ public abstract class ShipController : MonoBehaviour
         startHealth = health;
     }
     protected virtual void MoveForward() {
-        shipRigidBody.MovePosition((Vector2)transform.position + (Vector2.up * speed * Time.fixedDeltaTime));
+        shipRigidBody.MovePosition((Vector2)(transform.position + (-transform.up * speed * Time.fixedDeltaTime)));
     }
     protected virtual void Rotate(float rotation)
     {
-        shipRigidBody.rotation += rotation * Time.fixedDeltaTime;
+        shipRigidBody.rotation += rotation * rotationSpeed * Time.fixedDeltaTime;
     }
 
     protected virtual void ChangeSprite(Sprite newSprite)

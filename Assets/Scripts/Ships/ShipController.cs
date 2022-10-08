@@ -17,7 +17,7 @@ public abstract class ShipController : MonoBehaviour
     [SerializeField] protected Sprite heavyDamageShip;
     private float startHealth;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         shipRigidBody = GetComponent<Rigidbody2D>();
         shipSpriteRenderer = GetComponent<SpriteRenderer>();

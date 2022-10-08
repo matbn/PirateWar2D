@@ -1,24 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.GridBrushBase;
 
-public class EnemyShooterController : ShipController
+public class EnemyChaserController : ShipController
 {
-    public static readonly int EnemyLayer = 7;
-
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float cannonBallForce;
-    [SerializeField] private Transform cannonBallPoint;
-    [SerializeField] private GameObject cannonBallPrefab;
-    [SerializeField] private float attackDistance = 8f;
+    [SerializeField] private float attackDistance = 10f;
     private NavMeshAgent navMeshAgent;
-    private float currentAttackCooldown;
+    private Animator animator;
     private Transform target;
     private Vector2 rotationDirection;
-
+    private bool isAttacking;
     protected override void Awake()
     {
         base.Awake();
@@ -26,35 +19,37 @@ public class EnemyShooterController : ShipController
         navMeshAgent.updateUpAxis = false;
         navMeshAgent.updateRotation = false;
         target = GameObject.FindWithTag("Player").transform;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (target != null)
         {
-            if (currentAttackCooldown > 0)
-                currentAttackCooldown -= Time.deltaTime;
+            Move();
             if (Vector2.Distance(transform.position, target.position) > attackDistance)
             {
-                Move();
+                if (isAttacking) StopAttacking();
             }
             else
             {
-                Attack();
+                if (!isAttacking) Attack();
             }
         }
+
     }
     protected override void Attack()
     {
-        if (currentAttackCooldown <= 0)
-        {
-            LookAtTarget();
-            GameObject cannonBall = Instantiate(cannonBallPrefab, cannonBallPoint.position, cannonBallPoint.rotation);
-            cannonBall.layer = EnemyLayer;
-            Rigidbody2D cannonBallRB = cannonBall.GetComponent<Rigidbody2D>();
-            cannonBallRB.AddForce(cannonBallPoint.right * cannonBallForce, ForceMode2D.Impulse);
-            currentAttackCooldown = attackCooldown;
-        }
+        navMeshAgent.speed *= 2;
+        isAttacking = true;
+        animator.SetBool("Attacking", true);
+    }
+
+    private void StopAttacking()
+    {
+        navMeshAgent.speed /= 2;
+        isAttacking=false;
+        animator.SetBool("Attacking", false);
     }
 
     protected override void Die()
@@ -72,5 +67,13 @@ public class EnemyShooterController : ShipController
     {
         rotationDirection = target.position - transform.position;
         transform.rotation = Quaternion.FromToRotation(Vector3.up, -rotationDirection);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.SendMessage("TakeDamage", damage);
+        }
     }
 }

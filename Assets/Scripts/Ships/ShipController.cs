@@ -38,15 +38,15 @@ public abstract class ShipController : MonoBehaviour
     protected virtual void TakeDamage(float damage)
     {
         health -= damage;
-        if(health < startHealth * 0.33f)
+        if(health <= 0)
+        {
+            Die();
+        }else if(health < startHealth * 0.33f)
         {
             ChangeSprite(heavyDamageShip);
         }else if(health < startHealth * 0.66f)
         {
             ChangeSprite(damagedShip);
-        }else if(health <= 0)
-        {
-            Die();
         }
     }
 

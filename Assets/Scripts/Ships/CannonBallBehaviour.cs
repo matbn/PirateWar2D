@@ -8,7 +8,7 @@ public class CannonBallBehaviour : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 3f); 
+        Destroy(gameObject, 1f); 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

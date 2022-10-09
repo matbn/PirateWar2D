@@ -51,6 +51,7 @@ public class EnemyShooterController : ShipController
             LookAtTarget();
             GameObject cannonBall = Instantiate(cannonBallPrefab, cannonBallPoint.position, cannonBallPoint.rotation);
             cannonBall.layer = EnemyLayer;
+            cannonBall.GetComponent<CannonBallBehaviour>().damage = damage;
             Rigidbody2D cannonBallRB = cannonBall.GetComponent<Rigidbody2D>();
             cannonBallRB.AddForce(cannonBallPoint.right * cannonBallForce, ForceMode2D.Impulse);
             currentAttackCooldown = attackCooldown;

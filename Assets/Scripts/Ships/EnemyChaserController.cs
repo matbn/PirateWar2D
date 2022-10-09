@@ -8,7 +8,6 @@ public class EnemyChaserController : ShipController
 {
     [SerializeField] private float attackDistance = 10f;
     private NavMeshAgent navMeshAgent;
-    private Animator animator;
     private Transform target;
     private Vector2 rotationDirection;
     private bool isAttacking;
@@ -19,7 +18,6 @@ public class EnemyChaserController : ShipController
         navMeshAgent.updateUpAxis = false;
         navMeshAgent.updateRotation = false;
         target = GameObject.FindWithTag("Player").transform;
-        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -74,6 +72,7 @@ public class EnemyChaserController : ShipController
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.SendMessage("TakeDamage", damage);
+            Die();
         }
     }
 }

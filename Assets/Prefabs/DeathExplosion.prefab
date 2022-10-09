@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6969738747353663814}
   - component: {fileID: 1446904231624792040}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: DeathExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

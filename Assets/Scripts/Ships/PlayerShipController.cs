@@ -14,8 +14,9 @@ public class PlayerShipController : ShipController
     private LaserAim[] aimRefs;
     private float currentAttackCooldown, currentSpecialAttackCooldown;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         aimRefs = new LaserAim[cannonBallPoints.Length];
         for (int i = 0; i < cannonBallPoints.Length; i++)
         {
@@ -38,6 +39,7 @@ public class PlayerShipController : ShipController
         {
             GameObject cannonBall = Instantiate(cannonBallPrefab, cannonBallPoints[0].position, cannonBallPoints[0].rotation);
             cannonBall.layer = PlayerLayer;
+            cannonBall.GetComponent<CannonBallBehaviour>().damage = damage;
             Rigidbody2D cannonBallRB = cannonBall.GetComponent<Rigidbody2D>();
             cannonBallRB.AddForce(cannonBallPoints[0].right * cannonBallForce, ForceMode2D.Impulse);
             currentAttackCooldown = attackCooldown ;

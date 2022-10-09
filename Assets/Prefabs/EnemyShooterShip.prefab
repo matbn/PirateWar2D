@@ -295,6 +295,7 @@ MonoBehaviour:
   healthShip: {fileID: 21300000, guid: 24cd732a9215f0f49b80dc6253bd693f, type: 3}
   damagedShip: {fileID: 21300000, guid: 227893098a6525a45ab1c40826d8f347, type: 3}
   heavyDamageShip: {fileID: 21300000, guid: 959dd033e53857b41804539a474cd2c2, type: 3}
+  deathExplosionPrefab: {fileID: 4594188154665207284, guid: 4f0715077b77e6a4d8aa765da3b854e0, type: 3}
   attackCooldown: 2
   cannonBallForce: 30
   cannonBallPoint: {fileID: 1056739374510752319}

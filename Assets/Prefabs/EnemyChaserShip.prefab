@@ -177,6 +177,7 @@ MonoBehaviour:
   healthShip: {fileID: 21300000, guid: 9d63f8a2ebc75cf459d4098812b7fde7, type: 3}
   damagedShip: {fileID: 21300000, guid: 29f9c03ff516fb14e93ae8434afc99b2, type: 3}
   heavyDamageShip: {fileID: 21300000, guid: 2811448091d44af4cb2f9d6b08cf3a79, type: 3}
+  deathExplosionPrefab: {fileID: 4594188154665207284, guid: 4f0715077b77e6a4d8aa765da3b854e0, type: 3}
   attackDistance: 9
 --- !u!95 &895927094089884149
 Animator:

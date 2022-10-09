@@ -423,12 +423,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rotationSpeed: 60
+  rotationSpeed: 90
   damage: 30
-  health: 100
+  health: 300
   healthShip: {fileID: 21300000, guid: 5898476afcf823b45905d39c91a7baed, type: 3}
   damagedShip: {fileID: 21300000, guid: 7c1962f34bd008a44a4f915a46c4afb1, type: 3}
   heavyDamageShip: {fileID: 21300000, guid: 16bedbb16c2dd3e478ed6166b37c57d1, type: 3}
+  deathExplosionPrefab: {fileID: 4594188154665207284, guid: 4f0715077b77e6a4d8aa765da3b854e0, type: 3}
   attackCooldown: 2
   specialAttackCooldown: 4
   cannonBallForce: 30

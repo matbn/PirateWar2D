@@ -32,7 +32,7 @@ public class GameSessionManager : MonoBehaviour
     public void AddScore(int value)
     {
         playerScore+= value;
-  
+        OverlayUIManager.Instance.UpdateScore(playerScore);
     }
 
     private void SpawnEnemy()

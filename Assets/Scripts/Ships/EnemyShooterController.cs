@@ -24,8 +24,10 @@ public class EnemyShooterController : ShipController
         base.Awake();
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.updateUpAxis = false;
-        navMeshAgent.updateRotation = false;
-        target = GameObject.FindWithTag("Player").transform;
+        navMeshAgent.updateRotation = false; 
+        GameObject targetGO = GameObject.FindWithTag("Player");
+        if (targetGO != null)
+            target = targetGO.transform;
     }
 
     private void Update()
@@ -60,7 +62,8 @@ public class EnemyShooterController : ShipController
 
     protected override void Die()
     {
-        Destroy(gameObject);
+        GameSessionManager.instance.AddScore(1);
+        base.Die();
     }
 
     private void Move()

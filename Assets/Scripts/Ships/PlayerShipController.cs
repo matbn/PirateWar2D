@@ -61,7 +61,8 @@ public class PlayerShipController : ShipController
 
     protected override void Die()
     {
-        Destroy(gameObject);
+        base.Die();
+        GameSessionManager.instance.EndSession();
     }
 
     private void ShouldSpecialAim(bool shouldAim)

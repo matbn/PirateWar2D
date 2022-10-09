@@ -11,13 +11,16 @@ public class EnemyChaserController : ShipController
     private Transform target;
     private Vector2 rotationDirection;
     private bool isAttacking;
+    private bool selfKill = false;
     protected override void Awake()
     {
         base.Awake();
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.updateUpAxis = false;
         navMeshAgent.updateRotation = false;
-        target = GameObject.FindWithTag("Player").transform;
+        GameObject targetGO = GameObject.FindWithTag("Player");
+        if(targetGO != null)
+            target = targetGO.transform;
     }
 
     private void Update()
@@ -52,7 +55,11 @@ public class EnemyChaserController : ShipController
 
     protected override void Die()
     {
-        Destroy(gameObject);
+        if (!selfKill)
+        {
+            GameSessionManager.instance.AddScore(1);
+        }
+        base.Die();
     }
 
     private void Move()
@@ -72,6 +79,7 @@ public class EnemyChaserController : ShipController
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.SendMessage("TakeDamage", damage);
+            selfKill = true;
             Die();
         }
     }

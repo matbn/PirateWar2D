@@ -15,6 +15,7 @@ public abstract class ShipController : MonoBehaviour
     [SerializeField] protected Sprite healthShip;
     [SerializeField] protected Sprite damagedShip;
     [SerializeField] protected Sprite heavyDamageShip;
+    [SerializeField] protected GameObject deathExplosionPrefab;
     private float startHealth;
     protected Animator animator;
     protected virtual void Awake()
@@ -61,5 +62,10 @@ public abstract class ShipController : MonoBehaviour
         Rotate(rotateDirection);
     }
     protected abstract void Attack();
-    protected abstract void Die();
+    protected virtual void Die()
+    {
+        GameObject deathEffect = Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
+        Destroy(deathEffect, 1.5f);
+        Destroy(gameObject);
+    }
 }

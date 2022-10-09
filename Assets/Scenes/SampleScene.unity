@@ -11006,6 +11006,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1411108524, guid: a57d61960eb4ee74db42256d5eca5830, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411108524, guid: a57d61960eb4ee74db42256d5eca5830, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6937463544041295136, guid: a57d61960eb4ee74db42256d5eca5830, type: 3}
       propertyPath: m_Name
       value: PlayerShip

@@ -16,6 +16,7 @@ public abstract class ShipController : MonoBehaviour
     [SerializeField] protected Sprite damagedShip;
     [SerializeField] protected Sprite heavyDamageShip;
     [SerializeField] protected GameObject deathExplosionPrefab;
+    [SerializeField] private HealthBar healthBar;
     private float startHealth;
     protected Animator animator;
     protected virtual void Awake()
@@ -24,6 +25,10 @@ public abstract class ShipController : MonoBehaviour
         shipSpriteRenderer = GetComponent<SpriteRenderer>();
         startHealth = health;
         animator = GetComponent<Animator>();
+    }
+    protected virtual void Start()
+    {
+        healthBar.SetupSlider(startHealth);
     }
     protected virtual void MoveForward() {
         shipRigidBody.MovePosition((Vector2)(transform.position + (-transform.up * speed * Time.fixedDeltaTime)));
@@ -40,6 +45,7 @@ public abstract class ShipController : MonoBehaviour
     protected virtual void TakeDamage(float damage)
     {
         health -= damage;
+        healthBar.SetHealth(health);
         animator.SetTrigger("TakingDamageT");
         if (health <= 0)
         {

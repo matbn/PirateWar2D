@@ -12,7 +12,10 @@ public class CannonBallBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.SendMessage("TakeDamage", damage);
+        if (collision.gameObject.CompareTag("Player")|| collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.SendMessage("TakeDamage", damage);
+        }
         GameObject hitEffect = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
         Destroy(hitEffect, 1.5f);
         Destroy(gameObject);

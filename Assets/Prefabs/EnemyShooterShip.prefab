@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 1056739375206431378}
   - component: {fileID: 4814674137054435788}
   - component: {fileID: 4814674137054435789}
+  - component: {fileID: 6226339177129946091}
   m_Layer: 7
   m_Name: EnemyShooterShip
   m_TagString: Enemy
@@ -299,6 +300,26 @@ MonoBehaviour:
   cannonBallPoint: {fileID: 1056739374510752319}
   cannonBallPrefab: {fileID: 5253090606975265388, guid: b81174025c120d2438f9f5587b36367b, type: 3}
   attackDistance: 8
+--- !u!95 &6226339177129946091
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056739375206431379}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 71a279a848b295341b4d2ba00482812b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1056739374294531067
 PrefabInstance:
   m_ObjectHideFlags: 0

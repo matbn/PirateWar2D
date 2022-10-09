@@ -17,6 +17,12 @@ public class GameSessionManager : MonoBehaviour
     {
         instance = this;
     }
+    private void Start()
+    {
+        sessionTime = PlayerPrefs.GetFloat("GameSessionTime", 60);
+        timeBetweenSpawns = PlayerPrefs.GetFloat("EnemySpawnTime", 5);
+        timeLastSpawn = timeBetweenSpawns;
+    }
 
     void Update()
     {

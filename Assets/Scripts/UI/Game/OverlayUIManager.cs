@@ -26,8 +26,7 @@ public class OverlayUIManager : MonoBehaviour
 
     private void UpdateSessionTime()
     {
-        double mainGameTimerd = GameSessionManager.instance.sessionTime;
-        TimeSpan time = TimeSpan.FromSeconds(mainGameTimerd);
+        TimeSpan time = TimeSpan.FromSeconds(GameSessionManager.instance.sessionTime);
         string displayTime = time.ToString(@"m\:ss");
         sessionTime.text = displayTime;
     }

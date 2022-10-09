@@ -46,5 +46,6 @@ public class GameSessionManager : MonoBehaviour
     public void EndSession()
     {
         sessionRunning = false;
+        OverlayUIManager.Instance.EndSessionUI();
     }
 }

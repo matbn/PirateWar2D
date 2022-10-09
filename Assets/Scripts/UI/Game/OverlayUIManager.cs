@@ -8,6 +8,8 @@ public class OverlayUIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text sessionTime;
     [SerializeField] private TMP_Text playerScore;
+    [SerializeField] private GameObject GameUIRef;
+    [SerializeField] private GameObject EndScreenRef;
     public static OverlayUIManager Instance;
     private void Awake()
     {
@@ -19,7 +21,7 @@ public class OverlayUIManager : MonoBehaviour
     }
     public void UpdateScore(int value)
     {
-        playerScore.text = value.ToString();
+        playerScore.text = "Score: "+ value;
     }
 
     private void UpdateSessionTime()
@@ -28,5 +30,11 @@ public class OverlayUIManager : MonoBehaviour
         TimeSpan time = TimeSpan.FromSeconds(mainGameTimerd);
         string displayTime = time.ToString(@"m\:ss");
         sessionTime.text = displayTime;
+    }
+
+    public void EndSessionUI()
+    {
+        GameUIRef.SetActive(false);
+        EndScreenRef.SetActive(true);
     }
 }
